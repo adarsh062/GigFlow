@@ -3,22 +3,22 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { 
-  ArrowLeft, 
-  FileText, 
-  DollarSign, 
-  CheckCircle 
+import {
+  ArrowLeft,
+  FileText,
+  DollarSign,
+  CheckCircle
 } from 'lucide-react';
 
 const AddGig = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
   const toastShown = useRef(false);
-  
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -52,13 +52,13 @@ const AddGig = () => {
 
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/gigs", 
-        { 
-          title: formData.title, 
-          description: formData.description, 
-          budget: formData.budget 
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/gigs`,
+        {
+          title: formData.title,
+          description: formData.description,
+          budget: formData.budget
         },
-        { withCredentials: true } 
+        { withCredentials: true }
       );
       setSubmitted(true);
       toast.success("Gig posted successfully!");
@@ -84,13 +84,13 @@ const AddGig = () => {
               Your job is now live.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                to="/" 
+              <Link
+                to="/"
                 className="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-100 transition-colors"
               >
                 View All Jobs
               </Link>
-              <button 
+              <button
                 onClick={() => {
                   setSubmitted(false);
                   setFormData({ title: "", description: "", budget: "" });
@@ -129,7 +129,7 @@ const AddGig = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="rounded-xl border border-gray-200 bg-white p-6 md:p-10 shadow-sm space-y-8">
-              
+
               <div className="space-y-2">
                 <label htmlFor="title" className="text-sm font-semibold text-gray-700">Job Title</label>
                 <div className="relative">

@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/userSlice';
 import axios from 'axios';
-import {Briefcase,Menu,X,User,ChevronDown,LogOut,Settings,LayoutDashboard} from 'lucide-react';
+import { Briefcase, Menu, X, User, ChevronDown, LogOut, Settings, LayoutDashboard } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
 const Navbar = () => {
@@ -27,7 +27,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:5000/api/auth/logout');
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`);
       dispatch(logout());
       setProfileOpen(false);
       setMobileMenuOpen(false);

@@ -13,7 +13,7 @@ const Home = () => {
     const fetchGigs = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`http://localhost:5000/api/gigs?search=${search}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/gigs?search=${search}`);
         setGigs(res.data);
       } catch (err) {
         console.log(err);
@@ -60,8 +60,8 @@ const Home = () => {
                 className="block w-full h-14 pl-12 pr-4 rounded-full border-2 border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all shadow-sm"
               />
             </div>
-            <Link 
-              to="/add" 
+            <Link
+              to="/add"
               className="w-full md:w-auto h-14 px-8 rounded-full bg-blue-600 text-white font-bold text-lg flex items-center justify-center gap-2 hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5 transition-all shadow-md active:scale-95"
             >
               <PlusCircle className="h-5 w-5" />

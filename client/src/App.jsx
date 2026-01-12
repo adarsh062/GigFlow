@@ -11,7 +11,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import io from 'socket.io-client';
 
-const socket = io("http://localhost:5000");
+const socket = io(import.meta.env.VITE_API_URL);
 
 function App() {
   const { currentUser } = useSelector(state => state.user);
@@ -21,9 +21,8 @@ function App() {
       socket.on("notification", (data) => {
         toast.custom((t) => (
           <div
-            className={`${
-              t.visible ? 'animate-enter' : 'animate-leave'
-            } fixed inset-0 z-50 flex items-center justify-center bg-black/40`}>
+            className={`${t.visible ? 'animate-enter' : 'animate-leave'
+              } fixed inset-0 z-50 flex items-center justify-center bg-black/40`}>
             <div className="bg-white w-full max-w-md mx-4 rounded-2xl shadow-2xl border border-gray-200 p-6 relative animate-scaleIn">
               <h3 className="text-lg font-bold text-gray-900 mb-2 text-center">Notification</h3>
               <p className="text-gray-600 text-center mb-6">{data.message}</p>
@@ -35,7 +34,7 @@ function App() {
           </div>
         ), {
           duration: 8000,
-          position: "center", 
+          position: "center",
         });
       });
     }

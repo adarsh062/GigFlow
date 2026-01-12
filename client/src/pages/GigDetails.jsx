@@ -21,7 +21,7 @@ const GigDetails = () => {
   useEffect(() => {
     const fetchGig = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/gigs/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/gigs/${id}`);
         setGig(res.data);
         setLoading(false);
       } catch (err) {
@@ -37,7 +37,7 @@ const GigDetails = () => {
     if (currentUser && gig && currentUser._id === gig.userId) {
       const fetchBids = async () => {
         try {
-          const res = await axios.get(`http://localhost:5000/api/bids/${id}`, { withCredentials: true });
+          const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/bids/${id}`, { withCredentials: true });
           setBids(res.data);
         } catch (err) {
           console.log(err);
@@ -49,10 +49,10 @@ const GigDetails = () => {
 
 
   const onProposalSubmit = async (data) => {
-    if(!currentUser) return navigate("/login");
+    if (!currentUser) return navigate("/login");
     setSubmitting(true);
     try {
-      await axios.post("http://localhost:5000/api/bids", 
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/bids`,
         { gigId: id, price: data.price, message: data.message },
         { withCredentials: true }
       );
@@ -66,14 +66,14 @@ const GigDetails = () => {
   };
 
   const handleHire = async (bidId) => {
-    if(!window.confirm("Are you sure you want to hire this freelancer?")) return;
+    if (!window.confirm("Are you sure you want to hire this freelancer?")) return;
     try {
-      await axios.post("http://localhost:5000/api/bids/hire", 
-        { gigId: id, bidId }, 
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/bids/hire`,
+        { gigId: id, bidId },
         { withCredentials: true }
       );
       toast.success("Freelancer Hired!");
-      window.location.reload(); 
+      window.location.reload();
     } catch (err) {
       toast.error("Hiring failed");
     }
@@ -94,13 +94,12 @@ const GigDetails = () => {
       </div>
 
       <main className="max-w-7xl mx-auto px-6 py-8">
-        <div className={`grid gap-10 ${isOwner ? "grid-cols-1" : "lg:grid-cols-12"}`}>      
+        <div className={`grid gap-10 ${isOwner ? "grid-cols-1" : "lg:grid-cols-12"}`}>
           <div className={isOwner ? "col-span-1" : "lg:col-span-7"}>
             <div className="bg-white p-8 rounded-2xl border shadow-sm mb-10">
               <div className="flex flex-wrap items-center gap-3 mb-4">
-                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${
-                  !isAssigned ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
-                }`}>
+                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${!isAssigned ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+                  }`}>
                   {!isAssigned ? "Open" : "Closed"}
                 </span>
                 <span className="text-sm text-gray-500 flex items-center gap-1">
@@ -135,10 +134,10 @@ const GigDetails = () => {
                     </div>
                   ) : (
                     bids.map((bid) => (
-                      <ProposalCard 
-                        key={bid._id} 
-                        proposal={bid} 
-                        onHire={handleHire} 
+                      <ProposalCard
+                        key={bid._id}
+                        proposal={bid}
+                        onHire={handleHire}
                         isOwner={isOwner}
                         isAssigned={isAssigned}
                       />
@@ -152,7 +151,7 @@ const GigDetails = () => {
           {!isOwner && (
             <div className="lg:col-span-5">
               <div className="sticky top-6 space-y-6">
-                
+
                 <div className="rounded-2xl border bg-white p-8 shadow-lg">
                   <div className="mb-8 text-center">
                     <p className="text-sm text-gray-500 font-medium mb-2">Project Budget</p>
@@ -169,18 +168,18 @@ const GigDetails = () => {
                       </p>
                     </div>
                   ) : currentUser ? (
-                    <ProposalForm 
-                      onSubmit={onProposalSubmit} 
-                      maxBudget={gig.budget} 
-                      loading={submitting} 
+                    <ProposalForm
+                      onSubmit={onProposalSubmit}
+                      maxBudget={gig.budget}
+                      loading={submitting}
                     />
                   ) : (
                     <div className="text-center">
                       <p className="text-sm text-gray-500 mb-4">
                         Log in to submit a proposal
                       </p>
-                      <Link 
-                        to="/login" 
+                      <Link
+                        to="/login"
                         className="block w-full py-3 bg-gray-900 text-white font-bold rounded-xl hover:bg-black transition"
                       >
                         Sign In to Apply
