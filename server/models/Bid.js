@@ -20,12 +20,11 @@ const bidSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    default: "pending", // Options: 'pending', 'hired', 'rejected'
+    default: "pending",
     enum: ["pending", "hired", 'rejected']
   }
 }, { timestamps: true });
 
-// Prevent duplicate bids from same user on same gig
 bidSchema.index({ gigId: 1, freelancerId: 1 }, { unique: true });
 
 module.exports = mongoose.model('Bid', bidSchema);

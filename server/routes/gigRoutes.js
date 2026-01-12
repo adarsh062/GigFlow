@@ -4,9 +4,9 @@ const verifyToken = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.post('/', verifyToken, createGig); // Protected
-router.get('/', getGigs); // Public
-router.get('/my', verifyToken, getMyGigs); // Protected (Dashboard)
-router.get('/:id', getGig); // Public
+router.post('/', verifyToken, createGig); 
+router.get('/', getGigs);
+router.get('/my', verifyToken, getMyGigs);
+router.get('/:id', getGig);
 
 module.exports = router;

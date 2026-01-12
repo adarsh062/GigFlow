@@ -1,10 +1,9 @@
 const Gig = require('../models/Gig');
 
-// 1. Create a new Gig
 const createGig = async (req, res) => {
   try {
     const newGig = new Gig({
-      userId: req.userId, // Comes from verifyToken middleware
+      userId: req.userId, 
       ...req.body
     });
     const savedGig = await newGig.save();
@@ -14,13 +13,13 @@ const createGig = async (req, res) => {
   }
 };
 
-// 2. Get All Gigs (with Search)
+
 const getGigs = async (req, res) => {
   const { search } = req.query;
   const query = { status: "open" };
 
   if (search) {
-    query.title = { $regex: search, $options: "i" }; // Case insensitive search
+    query.title = { $regex: search, $options: "i" };
   }
 
   try {
@@ -31,7 +30,6 @@ const getGigs = async (req, res) => {
   }
 };
 
-// 3. Get Single Gig
 const getGig = async (req, res) => {
   try {
     const gig = await Gig.findById(req.params.id);
@@ -42,10 +40,8 @@ const getGig = async (req, res) => {
   }
 };
 
-// 4. Get User's Gigs (Dashboard)
 const getMyGigs = async (req, res) => {
   try {
-    // Find all gigs created by this user
     console.log("Fetching gigs for user:", req.userId);
     const gigs = await Gig.find({ userId: req.userId }).sort({ createdAt: -1 });
     console.log("Found gigs:", gigs.length);
