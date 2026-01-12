@@ -21,16 +21,13 @@ const ProposalForm = ({ onSubmit, maxBudget, loading }) => {
   return (
     <form 
       onSubmit={handleSubmit} 
-      className="space-y-6 bg-gray-50 p-6 rounded-xl border border-gray-200"
-    >
+      className="space-y-6 bg-gray-50 p-6 rounded-xl border border-gray-200">
       <div className="text-center">
         <h3 className="text-lg font-bold text-gray-900 mb-1">Submit Your Proposal</h3>
         <p className="text-sm text-gray-500">
           Client Budget: <span className="font-semibold text-gray-900">${maxBudget}</span>
         </p>
       </div>
-
-      {/* Bid */}
       <div className="space-y-2">
         <label className="text-sm font-medium text-gray-700">Your Bid ($)</label>
         <div className="relative">
@@ -47,8 +44,6 @@ const ProposalForm = ({ onSubmit, maxBudget, loading }) => {
         </div>
         {errors.bidAmount && <p className="text-sm text-red-500">{errors.bidAmount}</p>}
       </div>
-
-      {/* Cover Letter */}
       <div className="space-y-2">
         <label className="text-sm font-medium text-gray-700">Cover Letter</label>
         <textarea

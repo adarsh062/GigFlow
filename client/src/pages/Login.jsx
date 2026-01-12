@@ -10,13 +10,10 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
-  // Redux State
   const { loading, error } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(loginStart());
@@ -36,23 +33,17 @@ const Login = () => {
 
   return (
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gray-50 px-4 py-12 relative overflow-hidden">
-
-      {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-green-100 rounded-full blur-3xl opacity-50" />
       </div>
-
       <div className="relative w-full max-w-md z-10">
-        {/* Logo */}
         <Link to="/" className="flex items-center justify-center gap-2 mb-8 group">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 shadow-lg group-hover:scale-105 transition-transform">
             <Briefcase className="h-5 w-5 text-white" />
           </div>
           <span className="text-2xl font-bold text-gray-800">GigFlow</span>
         </Link>
-
-        {/* Card */}
         <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-xl">
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">
@@ -62,9 +53,7 @@ const Login = () => {
               Sign in to your account to continue
             </p>
           </div>
-
           <form onSubmit={handleLogin} className="space-y-5">
-            {/* Email */}
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium text-gray-700">
                 Email address
@@ -82,12 +71,9 @@ const Login = () => {
                 />
               </div>
             </div>
-
-            {/* Password */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="text-sm font-medium text-gray-700">
-                  Password
+                <label htmlFor="password" className="text-sm font-medium text-gray-700">Password
                 </label>
               </div>
               <div className="relative">
@@ -115,7 +101,6 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
@@ -124,7 +109,6 @@ const Login = () => {
               {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>
-          {/* Sign up link */}
           <p className="text-center text-sm text-gray-500 mt-6">
             Don't have an account?{" "}
             <Link to="/register" className="text-blue-600 font-medium hover:underline">

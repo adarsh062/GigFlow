@@ -11,7 +11,6 @@ import { Toaster, toast } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import io from 'socket.io-client';
 
-
 const socket = io("http://localhost:5000");
 
 function App() {
@@ -24,46 +23,23 @@ function App() {
           <div
             className={`${
               t.visible ? 'animate-enter' : 'animate-leave'
-            } max-w-sm w-full bg-white shadow-lg rounded-xl pointer-events-auto border border-gray-200`}
-          >
-            <div className="p-4">
-              <div className="flex items-start">
-                
-                {/* Left Indicator */}
-                <div className="flex-shrink-0">
-                  <div className="h-3 w-3 mt-1 rounded-full bg-blue-500"></div>
-                </div>
-
-                {/* Content */}
-                <div className="ml-3 w-0 flex-1">
-                  <p className="text-sm font-semibold text-gray-900">
-                    Notification
-                  </p>
-                  <p className="mt-1 text-sm text-gray-600">
-                    {data.message}
-                  </p>
-                </div>
-
-                {/* Close Button */}
-                <div className="ml-4 flex-shrink-0 flex">
-                  <button
-                    onClick={() => toast.dismiss(t.id)}
-                    className="inline-flex text-gray-400 hover:text-gray-600 transition"
-                  >
-                    ✕
-                  </button>
-                </div>
+            } fixed inset-0 z-50 flex items-center justify-center bg-black/40`}>
+            <div className="bg-white w-full max-w-md mx-4 rounded-2xl shadow-2xl border border-gray-200 p-6 relative animate-scaleIn">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 text-center">Notification</h3>
+              <p className="text-gray-600 text-center mb-6">{data.message}</p>
+              <div className="flex justify-center">
+                <button onClick={() => toast.dismiss(t.id)} className="px-6 py-2 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition active:scale-95">OK</button>
               </div>
+              <button onClick={() => toast.dismiss(t.id)} className="absolute top-3 right-3 text-gray-400 hover:text-gray-600">✕</button>
             </div>
           </div>
         ), {
           duration: 8000,
-          position: "top-right",
+          position: "center", 
         });
       });
     }
 
-    // Cleanup
     return () => {
       socket.off("notification");
     };
@@ -72,7 +48,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <Toaster position="top-right" />
+      <Toaster position="center" />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'; // useRef added
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ import {
 const AddGig = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
-  const toastShown = useRef(false); // Prevents double toast
+  const toastShown = useRef(false);
   
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -24,8 +24,6 @@ const AddGig = () => {
     description: "",
     budget: "",
   });
-
-  // 🔒 SECURITY CHECK (Fixed Double Toast)
   useEffect(() => {
     if (!currentUser) {
       if (!toastShown.current) {
@@ -71,8 +69,6 @@ const AddGig = () => {
       setLoading(false);
     }
   };
-
-  // SUCCESS VIEW
   if (submitted) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -109,11 +105,7 @@ const AddGig = () => {
       </div>
     );
   }
-
-  // Prevent flash of content
   if (!currentUser) return null;
-
-  // FORM VIEW
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">

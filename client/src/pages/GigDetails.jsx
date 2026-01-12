@@ -32,7 +32,7 @@ const GigDetails = () => {
     fetchGig();
   }, [id]);
 
-  // Fetch Bids (only for owner)
+
   useEffect(() => {
     if (currentUser && gig && currentUser._id === gig.userId) {
       const fetchBids = async () => {
@@ -47,7 +47,7 @@ const GigDetails = () => {
     }
   }, [gig, currentUser, id]);
 
-  // Submit Bid
+
   const onProposalSubmit = async (data) => {
     if(!currentUser) return navigate("/login");
     setSubmitting(true);
@@ -65,7 +65,6 @@ const GigDetails = () => {
     }
   };
 
-  // Hire Freelancer
   const handleHire = async (bidId) => {
     if(!window.confirm("Are you sure you want to hire this freelancer?")) return;
     try {
@@ -88,8 +87,6 @@ const GigDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
-      
-      {/* Navigation */}
       <div className="max-w-7xl mx-auto px-6 pt-6 pb-2">
         <Link to="/" className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors">
           <ArrowLeft className="h-4 w-4" /> Back to Jobs
@@ -97,14 +94,8 @@ const GigDetails = () => {
       </div>
 
       <main className="max-w-7xl mx-auto px-6 py-8">
-        
-        {/* 🔥 GRID CHANGE: If owner → 1 column, else → 2 columns */}
-        <div className={`grid gap-10 ${isOwner ? "grid-cols-1" : "lg:grid-cols-12"}`}>
-          
-          {/* --- LEFT / MAIN CONTENT --- */}
+        <div className={`grid gap-10 ${isOwner ? "grid-cols-1" : "lg:grid-cols-12"}`}>      
           <div className={isOwner ? "col-span-1" : "lg:col-span-7"}>
-            
-            {/* Header */}
             <div className="bg-white p-8 rounded-2xl border shadow-sm mb-10">
               <div className="flex flex-wrap items-center gap-3 mb-4">
                 <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${
@@ -129,7 +120,6 @@ const GigDetails = () => {
               </div>
             </div>
 
-            {/* Proposals (Only Owner) */}
             {isOwner && (
               <div className="bg-white p-8 rounded-2xl border shadow-sm">
                 <div className="flex items-center justify-between mb-6">
@@ -159,7 +149,6 @@ const GigDetails = () => {
             )}
           </div>
 
-          {/* --- RIGHT SIDEBAR (ONLY IF NOT OWNER) --- */}
           {!isOwner && (
             <div className="lg:col-span-5">
               <div className="sticky top-6 space-y-6">
@@ -174,7 +163,6 @@ const GigDetails = () => {
 
                   {isAssigned ? (
                     <div className="bg-gray-100 rounded-xl p-6 text-center">
-                      <Briefcase className="h-10 w-10 text-gray-400 mx-auto mb-3" />
                       <h3 className="font-bold text-gray-900">Position Filled</h3>
                       <p className="text-sm text-gray-500 mt-1">
                         This job is no longer accepting proposals.

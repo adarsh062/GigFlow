@@ -39,8 +39,6 @@ const Dashboard = () => {
     return (
         <div className="min-h-screen bg-gray-50 py-12">
             <div className="container mx-auto px-4">
-
-                {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
@@ -51,17 +49,15 @@ const Dashboard = () => {
                             Manage your posted jobs and view their status.
                         </p>
                     </div>
-
                     <Link
                         to="/add"
-                        className="px-6 py-2.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 flex items-center gap-2 transition-colors"
-                    >
+                        className="px-6 py-2.5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 
+                        flex items-center gap-2 transition-colors">
                         <PlusCircle className="h-5 w-5" />
                         Post New Job
                     </Link>
                 </div>
 
-                {/* Gigs List */}
                 {myGigs.length > 0 ? (
                     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                         {myGigs.map((gig) => (

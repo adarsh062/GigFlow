@@ -29,35 +29,23 @@ const Register = () => {
 
   return (
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gray-50 px-4 py-12 relative overflow-hidden">
-
-      {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-green-100 rounded-full blur-3xl opacity-50" />
       </div>
-
       <div className="relative w-full max-w-md z-10">
-        {/* Logo */}
         <Link to="/" className="flex items-center justify-center gap-2 mb-8 group">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 shadow-lg group-hover:scale-105 transition-transform">
             <Briefcase className="h-5 w-5 text-white" />
           </div>
           <span className="text-2xl font-bold text-gray-800">GigFlow</span>
         </Link>
-
-        {/* Card */}
         <div className="rounded-2xl border border-gray-100 bg-white p-8 shadow-xl">
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">
-              Create an account
-            </h1>
-            <p className="text-gray-500">
-              Join us to start your journey
-            </p>
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Create an account</h1>
+            <p className="text-gray-500">Join us to start your journey</p>
           </div>
-
           <form onSubmit={handleRegister} className="space-y-5">
-            {/* Name */}
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-medium text-gray-700">
                 Full Name
@@ -75,8 +63,6 @@ const Register = () => {
                 />
               </div>
             </div>
-
-            {/* Email */}
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium text-gray-700">
                 Email address
@@ -94,8 +80,6 @@ const Register = () => {
                 />
               </div>
             </div>
-
-            {/* Password */}
             <div className="space-y-2">
               <label htmlFor="password" className="text-sm font-medium text-gray-700">
                 Password
@@ -124,8 +108,6 @@ const Register = () => {
                 </button>
               </div>
             </div>
-
-            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
@@ -134,7 +116,6 @@ const Register = () => {
               {loading ? "Creating account..." : "Create Account"}
             </button>
           </form>
-          {/* Sign in link */}
           <p className="text-center text-sm text-gray-500 mt-6">
             Already have an account?{" "}
             <Link to="/login" className="text-blue-600 font-medium hover:underline">

@@ -2,17 +2,13 @@ import { User, Calendar, CheckCircle } from 'lucide-react';
 
 const ProposalCard = ({ proposal, onHire, isOwner, isAssigned }) => {
   const formatDate = (dateString) => new Date(dateString).toLocaleDateString();
-
   return (
     <div className={`rounded-xl border p-5 transition-all hover:shadow-md ${
       proposal.status === 'hired' 
         ? 'bg-green-50 border-green-500' 
         : 'bg-white border-gray-200 hover:border-blue-300'
     }`}>
-      
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-        
-        {/* User */}
         <div className="flex items-start gap-3">
           <div className="h-10 w-10 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
             <User className="h-5 w-5" />
@@ -27,13 +23,10 @@ const ProposalCard = ({ proposal, onHire, isOwner, isAssigned }) => {
             </div>
           </div>
         </div>
-
-        {/* Price */}
         <div className="flex items-center gap-3">
           <span className="bg-green-100 text-green-700 border border-green-200 font-bold px-3 py-1 rounded-full">
             ${proposal.price}
           </span>
-
           {proposal.status !== "pending" && (
             <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${
               proposal.status === "hired"
@@ -45,15 +38,11 @@ const ProposalCard = ({ proposal, onHire, isOwner, isAssigned }) => {
           )}
         </div>
       </div>
-
-      {/* Message */}
       <div className="mt-4 rounded-lg bg-gray-50 p-4 border">
         <p className="text-sm text-gray-600 italic">
           "{proposal.message}"
         </p>
       </div>
-
-      {/* Actions */}
       {isOwner && proposal.status === "pending" && !isAssigned && (
         <div className="mt-4 flex justify-end">
           <button
