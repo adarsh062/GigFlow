@@ -49,6 +49,14 @@ app.use(cors({
   credentials: true
 }));
 
+
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "GigFlow Backend is Working",
+    status: "Healthy",
+    frontend: "https://gigflow-project.vercel.app"
+  });
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/gigs', gigRoutes);
 app.use('/api/bids', bidRoutes);
