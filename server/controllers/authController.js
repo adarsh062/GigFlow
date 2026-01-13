@@ -34,8 +34,8 @@ const login = async (req, res) => {
     const { password: userPassword, ...otherDetails } = user._doc;
     res.cookie("accessToken", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Lax",
+      secure:true,
+      sameSite: "none",
     }).status(200).json(otherDetails);
 
   } catch (err) {
